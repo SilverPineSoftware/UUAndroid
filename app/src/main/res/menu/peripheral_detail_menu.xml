@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools">
+
+    <item android:id="@+id/action_power_cycle_bluetooth"
+          android:title="Cycle BT"
+          tools:ignore="HardcodedText"
+          app:showAsAction="always"/>
+
+    <item android:id="@+id/action_power_bluetooth_off"
+          android:title="Turn BT Off"
+          tools:ignore="HardcodedText"
+          app:showAsAction="never"/>
+
+    <item android:id="@+id/action_power_bluetooth_on"
+          android:title="Turn BT On"
+          tools:ignore="HardcodedText"
+          app:showAsAction="never"/>
+
+</menu>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="@string/uuid_with_colon"/>
+
+        <TextView
+            android:id="@+id/id_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="0dp"
+            tools:ignore="hardcodedText"
+            android:maxLines="1"
+            android:text="00000000-0000-1000-8000-00805F9B34FB"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="@string/name_with_colon"/>
+
+        <TextView
+            android:id="@+id/name_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="0dp"
+            tools:ignore="hardcodedText"
+            android:maxLines="1"
+            android:text="Service Name"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="@string/properties_with_colon"/>
+
+        <TextView
+            android:id="@+id/properties_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="0dp"
+            android:maxLines="1"
+            tools:ignore="hardcodedText"
+            android:text="Read,Write,Notify"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
+
+        <TextView
+            android:id="@+id/is_notifying_prefix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_alignParentStart="true"
+            android:text="@string/is_notifying_with_colon"/>
+
+        <TextView
+            android:id="@+id/is_notifying_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="0dp"
+            android:layout_toEndOf="@+id/is_notifying_prefix"
+            android:layout_toStartOf="@+id/toggle_notify_button"
+            android:maxLines="1"
+            tools:ignore="hardcodedText"
+            android:text="Yes"/>
+
+        <Button
+            android:id="@+id/toggle_notify_button"
+            android:text="@string/turn_notify_on"
+            android:gravity="end"
+            android:layout_alignParentEnd="true"
+            style="@style/link_button"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/read_data_button"
+            android:labelFor="@+id/data_edit_box"
+            android:text="@string/data_with_colon"/>
+
+        <Button
+            android:id="@+id/read_data_button"
+            android:text="@string/read_data"
+            style="@style/link_button"
+            android:gravity="end"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/data_edit_box"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            android:inputType="textNoSuggestions"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/write_data_button"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_alignTop="@+id/write_data_button"
+            android:background="@drawable/edit_box_background"
+            android:text=""/>
+
+        <Button
+            android:id="@+id/write_data_button"
+            android:text="@string/write_data"
+            style="@style/link_button"
+            android:gravity="end"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"/>
+
+        <Button
+            android:id="@+id/write_data_without_response_button"
+            android:text="@string/write_without_response"
+            style="@style/link_button"
+            android:gravity="end"
+            android:layout_below="@+id/write_data_button"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+
+
+
+
+
+</LinearLayout>

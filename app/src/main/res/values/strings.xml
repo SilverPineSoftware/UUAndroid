@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">UUToolbox</string>
+
+    <string name="scan">Scan</string>
+    <string name="stop">Stop</string>
+    <string name="connect">Connect</string>
+    <string name="connecting">Connecting</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="disconnecting">Disconnecting</string>
+    <string name="read_rssi">Read RSSI</string>
+    <string name="poll_rssi">Poll RSSI</string>
+    <string name="stop_polling">Stop Polling</string>
+    <string name="discover_services">Discover Services</string>
+    <string name="discover_chars">Discover Chars</string>
+    <string name="discover_included_services">Discover Included Services</string>
+    <string name="info">Info</string>
+    <string name="services">Services</string>
+    <string name="characteristics">Characteristics</string>
+    <string name="address_with_colon">Address:</string>
+    <string name="name_with_colon">Name:</string>
+    <string name="state_with_colon">State:</string>
+    <string name="rssi_with_colon">RSSI:</string>
+    <string name="uuid_with_colon">UUID:</string>
+    <string name="is_primary_with_colon">IsPrimary:</string>
+    <string name="properties_with_colon">Properties:</string>
+    <string name="is_notifying_with_colon">Is Notifying:</string>
+    <string name="data_with_colon">Data:</string>
+    <string name="turn_notify_on">Turn Notify On</string>
+    <string name="turn_notify_off">Turn Notify Off</string>
+    <string name="read_data">Read Data</string>
+    <string name="write_data">Write Data</string>
+    <string name="write_without_response">WWOR</string>
+    <string name="null_text">null</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="turn_bluetooth_off">Turn BT Off</string>
+    <string name="turn_bluetooth_on">Turn BT On</string>
+    <string name="pair">Pair</string>
+    <string name="unpair">Unpair</string>
+    <string name="connect_spp">Connect SPP</string>
+    <string name="disconnect_spp">Disconnect SPP</string>
+</resources>
