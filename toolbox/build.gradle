@@ -66,7 +66,7 @@ ext {
     siteUrl = 'https://github.com/SilverPineSoftware/UUAndroid'
     gitUrl = 'https://github.com/SilverPineSoftware/UUAndroid.git'
 
-    libraryVersion = '0.0.1'
+    libraryVersion = '0.0.3'
 
     developerId = 'ryandevore'
     developerName = 'Ryan DeVore'
