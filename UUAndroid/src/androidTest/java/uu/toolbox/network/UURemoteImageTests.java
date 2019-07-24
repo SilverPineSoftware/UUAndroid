@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.support.v4.content.LocalBroadcastManager;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.test.ApplicationTestCase;
 
 import junit.framework.Assert;
@@ -15,8 +15,6 @@ import java.util.HashMap;
 import java.util.concurrent.CountDownLatch;
 
 import uu.toolbox.data.UUDataCache;
-import uu.toolbox.network.UURemoteData;
-import uu.toolbox.network.UURemoteImage;
 
 public class UURemoteImageTests extends ApplicationTestCase<Application>
 {

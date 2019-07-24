@@ -2,8 +2,8 @@ package uu.toolbox.bluetooth;
 
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import uu.toolbox.logging.UULog;
 

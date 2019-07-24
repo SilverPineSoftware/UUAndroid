@@ -1,7 +1,7 @@
 package uu.toolboxapp.bluetooth;
 
 import android.bluetooth.BluetoothDevice;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.nio.ByteBuffer;
 import java.util.UUID;

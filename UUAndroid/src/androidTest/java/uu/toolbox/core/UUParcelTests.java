@@ -2,7 +2,7 @@ package uu.toolbox.core;
 
 import android.app.Application;
 import android.os.Bundle;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.runner.AndroidJUnit4;
 import android.test.ApplicationTestCase;
 
 import org.junit.Assert;

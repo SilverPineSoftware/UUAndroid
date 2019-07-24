@@ -1,6 +1,6 @@
 package uu.toolbox.core;
 
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.runner.AndroidJUnit4;
 
 import junit.framework.Assert;
 

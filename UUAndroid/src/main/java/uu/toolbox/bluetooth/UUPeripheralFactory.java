@@ -1,7 +1,7 @@
 package uu.toolbox.bluetooth;
 
 import android.bluetooth.BluetoothDevice;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Factory to build UUPeripheral objects or their derived classes from scan results

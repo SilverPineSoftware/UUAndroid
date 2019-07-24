@@ -1,6 +1,6 @@
 package uu.toolbox.bluetooth;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Interface for delivering async results from a UUPeripheral action that returns a boolean

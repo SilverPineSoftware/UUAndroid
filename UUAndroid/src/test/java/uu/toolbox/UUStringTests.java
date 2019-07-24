@@ -1,6 +1,6 @@
 package uu.toolbox;
 
-import android.support.v4.util.Pair;
+import androidx.core.util.Pair;
 
 import junit.framework.Assert;
 

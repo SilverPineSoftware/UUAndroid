@@ -1,6 +1,6 @@
 package uu.toolbox.bluetooth;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Interface that callers of UUBluetoothScanner can use to manually filter

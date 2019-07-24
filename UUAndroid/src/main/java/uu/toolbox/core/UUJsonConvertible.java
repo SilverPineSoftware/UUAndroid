@@ -1,7 +1,7 @@
 package uu.toolbox.core;
 
 import android.os.Parcel;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.JsonReader;
 
 import org.json.JSONObject;

@@ -1,7 +1,7 @@
 package uu.toolbox.core;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.VisibleForTesting;
+import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 
 import java.nio.ByteBuffer;
 import java.security.SecureRandom;

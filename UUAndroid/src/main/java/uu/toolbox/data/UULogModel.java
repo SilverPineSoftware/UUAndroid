@@ -2,7 +2,7 @@ package uu.toolbox.data;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * UULogModel is a table representation of an android logcat method call. This is helpful

@@ -1,8 +1,8 @@
 package uu.toolbox.bluetooth;
 
 import android.bluetooth.BluetoothGattCharacteristic;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Interface for delivering BTLE characteristic specific async events to callers

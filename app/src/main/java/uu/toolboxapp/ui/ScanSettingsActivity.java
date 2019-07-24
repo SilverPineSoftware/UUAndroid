@@ -1,6 +1,6 @@
 package uu.toolboxapp.ui;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ScanSettingsActivity extends AppCompatActivity
 {

@@ -1,6 +1,6 @@
 package uu.toolboxapp.bluetooth;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import uu.toolbox.bluetooth.UUPeripheral;
 import uu.toolbox.bluetooth.UUPeripheralFilter;

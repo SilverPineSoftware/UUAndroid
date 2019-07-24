@@ -1,6 +1,6 @@
 package uu.toolbox.core;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 /**
  * Useful set of methods for manipulating Booleans

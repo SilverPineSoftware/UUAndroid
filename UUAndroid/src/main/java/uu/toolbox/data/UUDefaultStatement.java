@@ -1,7 +1,7 @@
 package uu.toolbox.data;
 
 import android.database.sqlite.SQLiteStatement;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public class UUDefaultStatement implements UUSQLiteStatement
 {
