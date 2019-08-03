@@ -30,11 +30,6 @@ def getVersionCode = { ->
         versionBuild = 0
     }
 
-    project.logger.lifecycle("versionMajor: $versionMajor")
-    project.logger.lifecycle("versionMinor: $versionMinor")
-    project.logger.lifecycle("versionPatch: $versionPatch")
-    project.logger.lifecycle("versionBuild: $versionBuild")
-
     def versionCode =
             versionMajor.toInteger() * 100000 +
                     versionMinor.toInteger() * 10000 +
