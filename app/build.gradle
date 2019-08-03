@@ -49,14 +49,6 @@ android {
     ext.bundle_id = 'uu.toolboxapp'
     compileSdkVersion 28
 
-    applicationVariants.all { variant ->
-        variant.outputs.all {
-            def flavor = variant.name
-            def versionName = variant.versionName
-            outputFileName = "${bundle_id}_${flavor}_${versionName}.apk"
-        }
-    }
-
     signingConfigs {
         release {
             storeFile file("${signingKeystorePath}")
@@ -72,6 +64,7 @@ android {
         targetSdkVersion 28
         versionName buildVersionName
         versionCode getVersionCode()
+        archivesBaseName = "${bundle_id}_${versionName}"
         resValue "string", "shutterstock_api_key", "${shutterStockApiKey}"
         resValue "string", "openweathermap_api_key", "${openWeatherMapApiKey}"
     }
