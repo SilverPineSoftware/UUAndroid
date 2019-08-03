@@ -4,18 +4,74 @@ Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 def shutterStockApiKey = properties.getProperty('shutterstock.apikey')
 def openWeatherMapApiKey = properties.getProperty('openweathermap.apikey')
+def signingKeystorePath = properties.getProperty('signing.keystore.path')
+def signingKeystorePassword = properties.getProperty('signing.keystore.password')
+def signingAlias = properties.getProperty('signing.alias')
+def signingAliasPassword = properties.getProperty('signing.alias.password')
+
+def getVersionCode = { ->
+    project.logger.lifecycle("buildVersionName: $buildVersionName")
+
+    def (versionMajor, versionMinor, versionPatch, versionBuild) = "$buildVersionName".tokenize('.')
+
+    if (versionMajor == null) {
+        versionMajor = 0
+    }
+
+    if (versionMinor == null) {
+        versionMinor = 0
+    }
+
+    if (versionPatch == null) {
+        versionPatch = 0
+    }
+
+    if (versionBuild == null) {
+        versionBuild = 0
+    }
+
+    project.logger.lifecycle("versionMajor: $versionMajor")
+    project.logger.lifecycle("versionMinor: $versionMinor")
+    project.logger.lifecycle("versionPatch: $versionPatch")
+    project.logger.lifecycle("versionBuild: $versionBuild")
+
+    def versionCode =
+            versionMajor.toInteger() * 100000 +
+                    versionMinor.toInteger() * 10000 +
+                    versionPatch.toInteger() * 1000 +
+                    versionBuild.toInteger()
+
+    project.logger.lifecycle("versionCode: $versionCode")
+    return versionCode
+}
 
 android {
     ext.bundle_id = 'uu.toolboxapp'
-
     compileSdkVersion 28
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            def flavor = variant.name
+            def versionName = variant.versionName
+            outputFileName = "${bundle_id}_${flavor}_${versionName}.apk"
+        }
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("${signingKeystorePath}")
+            storePassword "${signingKeystorePassword}"
+            keyAlias "${signingAlias}"
+            keyPassword "${signingAliasPassword}"
+        }
+    }
 
     defaultConfig {
         applicationId "${bundle_id}"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionName buildVersionName
+        versionCode getVersionCode()
         resValue "string", "shutterstock_api_key", "${shutterStockApiKey}"
         resValue "string", "openweathermap_api_key", "${openWeatherMapApiKey}"
     }
@@ -40,6 +96,7 @@ android {
         release {
             minifyEnabled true
             shrinkResources true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             resValue "string", "application_label", "@string/app_name"
             resValue "string", "file_provider_name", "${bundle_id}.fileprovider"
