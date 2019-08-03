@@ -1,5 +1,6 @@
 package uu.toolboxapp.ui;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -8,8 +9,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +23,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import uu.toolbox.core.UUJson;
 import uu.toolbox.data.UUDataCache;
 import uu.toolbox.logging.UULog;
@@ -36,7 +36,7 @@ import uu.toolbox.network.UURemoteData;
 import uu.toolbox.network.UURemoteImage;
 import uu.toolboxapp.R;
 
-public class PhotoGalleryActivity extends AppCompatActivity
+public class PhotoGalleryActivity extends Activity
 {
     private GridView gridView;
     private RemotePhotoAdapter gridAdapter;
@@ -70,6 +70,7 @@ public class PhotoGalleryActivity extends AppCompatActivity
             }
         };
 
+        lbm.registerReceiver(br, filter);
 
         ViewTreeObserver tvo = gridView.getViewTreeObserver();
         tvo.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
@@ -159,69 +160,6 @@ public class PhotoGalleryActivity extends AppCompatActivity
         {
             UULog.error(getClass(), "fetchImages", ex);
         }
-
-        /*
-        let url = "https://api.shutterstock.com/v2/images/search"
-
-        var args : [String:String] = [:]
-        args["page"] = "1"
-        args["per_page"] = "500"
-        args["query"] = "forest"
-
-        let req = UUHttpRequest.getRequest(url, args)
-
-        let username = "d4a89-1400b-04251-4faee-f7a23-12271:61764-d9c3c-8a832-a7bdf-098e4-0b382"
-        let usernameData = username.data(using: .utf8)
-        let usernameEncoded = usernameData!.base64EncodedString(options: Data.Base64EncodingOptions.init(rawValue: 0))
-        req.headerFields["Authorization"] = "Basic \(usernameEncoded)"
-
-        _ = UUHttpSession.executeRequest(req)
-        { (response:UUHttpResponse) in
-
-            if (response.httpError == nil)
-            {
-                self.tableData.removeAll()
-
-                let parsed = response.parsedResponse as? [AnyHashable:Any]
-                if (parsed != nil)
-                {
-                    let data = parsed!["data"] as? [ [AnyHashable:Any] ]
-                    if (data != nil)
-                    {
-                        for item in data!
-                            {
-                                    let assets = item["assets"] as? [AnyHashable:Any]
-                        if (assets != nil)
-                        {
-                            let largeThumb = assets!["large_thumb"] as? [AnyHashable:Any]
-                            if (largeThumb != nil)
-                            {
-                                let value = largeThumb!["url"] as? String
-                                if (value != nil)
-                                {
-                                    self.tableData.append(value!)
-                                }
-                            }
-                        }
-                        }
-                    }
-
-                    DispatchQueue.main.async
-                    {
-                        self.collectionView.reloadData()
-                    }
-                }
-            }
-            else
-            {
-                self.tableData.removeAll()
-
-                DispatchQueue.main.async
-                {
-                    self.collectionView.reloadData()
-                }
-            }
-        }*/
     }
 
     private void handlePhotoDownload(Context context, Intent intent)

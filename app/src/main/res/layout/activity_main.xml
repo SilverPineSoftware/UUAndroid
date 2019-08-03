@@ -40,12 +40,13 @@
                 tools:ignore="HardcodedText"
                 android:onClick="onPhotoGalleryClicked"/>
 
+            <!--
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="Weather"
                 tools:ignore="HardcodedText"
-                android:onClick="onWeatherClicked"/>
+                android:onClick="onWeatherClicked"/>-->
         </LinearLayout>
 
     </ScrollView>
