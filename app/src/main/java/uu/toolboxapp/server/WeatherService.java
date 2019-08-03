@@ -13,6 +13,7 @@ import uu.toolbox.network.UUHttpRequest;
 import uu.toolbox.network.UUHttpResponse;
 import uu.toolbox.network.UUMimeType;
 import uu.toolbox.logging.UULog;
+import uu.toolboxapp.R;
 import uu.toolboxapp.data.AppDatabase;
 import uu.toolboxapp.data.models.WeatherSummary;
 
@@ -26,7 +27,7 @@ public class WeatherService
 
     // Instance Variables
     private Context context;
-    private String apiKey = "6a747114c9cf80cf4d2908053cb4f8c2";
+    private String apiKey;
     private String baseUrl = "http://api.openweathermap.org/data/2.5/weather";
 
 
@@ -43,14 +44,13 @@ public class WeatherService
     private WeatherService(final Context context)
     {
         this.context = context;
+        apiKey = context.getResources().getString(R.string.openweathermap_api_key);
     }
 
     public interface WeatherDelegate
     {
         void onComplete();
     }
-
-
 
     public void fetchWeather(final String city, final String country, final WeatherDelegate callback)
     {

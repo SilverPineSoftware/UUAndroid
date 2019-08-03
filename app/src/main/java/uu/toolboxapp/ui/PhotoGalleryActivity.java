@@ -104,7 +104,7 @@ public class PhotoGalleryActivity extends Activity
             req.addQueryArgument("per_page", "500");
             req.addQueryArgument("query", "forest");
 
-            String username = "d4a89-1400b-04251-4faee-f7a23-12271:61764-d9c3c-8a832-a7bdf-098e4-0b382";
+            String username =  getString(R.string.shutterstock_api_key);
             byte[] usernameData = username.getBytes("UTF-8");
             String usernameEncoded = Base64.encodeToString(usernameData, Base64.NO_WRAP);
             req.addHeaderField("Authorization", "Basic " + usernameEncoded);

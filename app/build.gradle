@@ -1,22 +1,49 @@
 apply plugin: 'com.android.application'
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def shutterStockApiKey = properties.getProperty('shutterstock.apikey')
+def openWeatherMapApiKey = properties.getProperty('openweathermap.apikey')
+
 android {
+    ext.bundle_id = 'uu.toolboxapp'
+
     compileSdkVersion 28
 
     defaultConfig {
-        applicationId 'uu.toolboxapp'
+        applicationId "${bundle_id}"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        resValue "string", "shutterstock_api_key", "${shutterStockApiKey}"
+        resValue "string", "openweathermap_api_key", "${openWeatherMapApiKey}"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    productFlavors {
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            applicationIdSuffix '.d'
+            versionNameSuffix '-DEBUG'
+            resValue "string", "application_label", "UUToolbox Dev"
+            resValue "string", "file_provider_name", "${bundle_id}.fileprovider.d"
+        }
+
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            resValue "string", "application_label", "@string/app_name"
+            resValue "string", "file_provider_name", "${bundle_id}.fileprovider"
+        }
     }
 
     compileOptions {
