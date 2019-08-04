@@ -5,25 +5,6 @@ properties.load(project.rootProject.file('local.properties').newDataInputStream(
 def shutterStockApiKey = properties.getProperty('shutterstock.apikey')
 def openWeatherMapApiKey = properties.getProperty('openweathermap.apikey')
 
-def signingKeystorePath = ""
-def signingKeystorePassword = ""
-def signingAlias = ""
-def signingAliasPassword = ""
-
-try {
-    project.logger.lifecycle("signingConfigFile: ${signingConfigFile}")
-
-    Properties signingConfigProperties = new Properties()
-
-    signingConfigProperties.load(new FileInputStream(file("${signingConfigFile}")))
-    signingKeystorePath = signingConfigProperties.getProperty('signing.keystore.path')
-    signingKeystorePassword = signingConfigProperties.getProperty('signing.keystore.password')
-    signingAlias = signingConfigProperties.getProperty('signing.alias')
-    signingAliasPassword = signingConfigProperties.getProperty('signing.alias.password')
-} catch (all) {
-    project.logger.lifecycle("Signing config file not found")
-}
-
 def getVersionCode = { ->
     project.logger.lifecycle("buildVersionName: $buildVersionName")
 
@@ -61,10 +42,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("${signingKeystorePath}")
-            storePassword "${signingKeystorePassword}"
-            keyAlias "${signingAlias}"
-            keyPassword "${signingAliasPassword}"
+            storeFile file("${signingKeystoreFile}")
         }
     }
 
@@ -114,4 +92,18 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation project(':UUAndroid')
+}
+
+
+try {
+    Properties signingProperties = new Properties()
+    project.logger.lifecycle("signingConfigFile=${signingConfigFile}")
+
+    signingProperties.load(new FileInputStream(file("${signingConfigFile}")))
+    android.signingConfigs.release.storePassword = signingProperties.getProperty('signing.keystore.password')
+    android.signingConfigs.release.keyAlias = signingProperties.getProperty('signing.alias')
+    android.signingConfigs.release.keyPassword = signingProperties.getProperty('signing.alias.password')
+    project.logger.lifecycle("Signing config loaded.")
+} catch (all) {
+    project.logger.lifecycle("Signing config file not found")
 }
