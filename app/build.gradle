@@ -4,10 +4,25 @@ Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 def shutterStockApiKey = properties.getProperty('shutterstock.apikey')
 def openWeatherMapApiKey = properties.getProperty('openweathermap.apikey')
-def signingKeystorePath = properties.getProperty('signing.keystore.path')
-def signingKeystorePassword = properties.getProperty('signing.keystore.password')
-def signingAlias = properties.getProperty('signing.alias')
-def signingAliasPassword = properties.getProperty('signing.alias.password')
+
+def signingKeystorePath = ""
+def signingKeystorePassword = ""
+def signingAlias = ""
+def signingAliasPassword = ""
+
+try {
+    project.logger.lifecycle("signingConfigFile: ${signingConfigFile}")
+
+    Properties signingConfigProperties = new Properties()
+
+    signingConfigProperties.load(new FileInputStream(file("${signingConfigFile}")))
+    signingKeystorePath = signingConfigProperties.getProperty('signing.keystore.path')
+    signingKeystorePassword = signingConfigProperties.getProperty('signing.keystore.password')
+    signingAlias = signingConfigProperties.getProperty('signing.alias')
+    signingAliasPassword = signingConfigProperties.getProperty('signing.alias.password')
+} catch (all) {
+    project.logger.lifecycle("Signing config file not found")
+}
 
 def getVersionCode = { ->
     project.logger.lifecycle("buildVersionName: $buildVersionName")
