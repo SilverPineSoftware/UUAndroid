@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
@@ -13,6 +11,8 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Set;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import uu.toolbox.BuildConfig;
 import uu.toolbox.core.UUWorkerThread;
 
