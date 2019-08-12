@@ -2,9 +2,6 @@ package uu.toolbox.network;
 
 import android.content.Context;
 import android.content.Intent;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.net.URL;
 import java.util.ArrayDeque;
@@ -14,6 +11,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import uu.toolbox.core.UUDate;
 import uu.toolbox.core.UUNonNullObjectDelegate;
 import uu.toolbox.core.UUString;
@@ -44,6 +44,11 @@ public class UURemoteData implements UURemoteDataProtocol
     {
         public byte[] data;
         public String mimeType;
+    }
+
+    public interface UURemoteDataReceiver
+    {
+        boolean hasRemoteData(@NonNull final String remotePath);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////

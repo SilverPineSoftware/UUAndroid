@@ -1,7 +1,5 @@
 package uu.toolbox.core;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.Base64;
 import android.util.JsonReader;
 
@@ -16,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import uu.toolbox.logging.UULog;
 
 /**
@@ -850,6 +850,31 @@ public final class UUJson
     }
 
     @NonNull
+    public static ArrayList<Long> safeGetJsonLongs(final JSONArray json)
+    {
+        ArrayList<Long> list = new ArrayList<>();
+
+        try
+        {
+            if (json != null)
+            {
+                int count = json.length();
+                for (int i = 0; i < count; i++)
+                {
+                    long obj = json.getLong(i);
+                    list.add(obj);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            list = new ArrayList<>();
+        }
+
+        return list;
+    }
+
+    @NonNull
     public static ArrayList<Integer> safeGetJsonIntegers(final JSONArray json)
     {
         ArrayList<Integer> list = new ArrayList<>();
@@ -862,6 +887,106 @@ public final class UUJson
                 for (int i = 0; i < count; i++)
                 {
                     int obj = json.getInt(i);
+                    list.add(obj);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            list = new ArrayList<>();
+        }
+
+        return list;
+    }
+
+    @NonNull
+    public static ArrayList<Short> safeGetJsonShorts(final JSONArray json)
+    {
+        ArrayList<Short> list = new ArrayList<>();
+
+        try
+        {
+            if (json != null)
+            {
+                int count = json.length();
+                for (int i = 0; i < count; i++)
+                {
+                    short obj = (short)json.getInt(i);
+                    list.add(obj);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            list = new ArrayList<>();
+        }
+
+        return list;
+    }
+
+    @NonNull
+    public static ArrayList<Byte> safeGetJsonBytes(final JSONArray json)
+    {
+        ArrayList<Byte> list = new ArrayList<>();
+
+        try
+        {
+            if (json != null)
+            {
+                int count = json.length();
+                for (int i = 0; i < count; i++)
+                {
+                    byte obj = (byte)json.getInt(i);
+                    list.add(obj);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            list = new ArrayList<>();
+        }
+
+        return list;
+    }
+
+    @NonNull
+    public static ArrayList<Double> safeGetJsonDoubles(final JSONArray json)
+    {
+        ArrayList<Double> list = new ArrayList<>();
+
+        try
+        {
+            if (json != null)
+            {
+                int count = json.length();
+                for (int i = 0; i < count; i++)
+                {
+                    double obj = json.getDouble(i);
+                    list.add(obj);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            list = new ArrayList<>();
+        }
+
+        return list;
+    }
+
+    @NonNull
+    public static ArrayList<Float> safeGetJsonFloats(final JSONArray json)
+    {
+        ArrayList<Float> list = new ArrayList<>();
+
+        try
+        {
+            if (json != null)
+            {
+                int count = json.length();
+                for (int i = 0; i < count; i++)
+                {
+                    float obj = (float)json.getDouble(i);
                     list.add(obj);
                 }
             }
@@ -962,10 +1087,40 @@ public final class UUJson
         return safeGetJsonStrings(array);
     }
 
+    public static ArrayList<Long> safeGetArrayOfLongs(final JSONObject json, final Object key)
+    {
+        JSONArray array = safeGetJsonArray(json, key);
+        return safeGetJsonLongs(array);
+    }
+
     public static ArrayList<Integer> safeGetArrayOfIntegers(final JSONObject json, final Object key)
     {
         JSONArray array = safeGetJsonArray(json, key);
         return safeGetJsonIntegers(array);
+    }
+
+    public static ArrayList<Short> safeGetArrayOfShorts(final JSONObject json, final Object key)
+    {
+        JSONArray array = safeGetJsonArray(json, key);
+        return safeGetJsonShorts(array);
+    }
+
+    public static ArrayList<Byte> safeGetArrayOfBytes(final JSONObject json, final Object key)
+    {
+        JSONArray array = safeGetJsonArray(json, key);
+        return safeGetJsonBytes(array);
+    }
+
+    public static ArrayList<Double> safeGetArrayOfDoubles(final JSONObject json, final Object key)
+    {
+        JSONArray array = safeGetJsonArray(json, key);
+        return safeGetJsonDoubles(array);
+    }
+
+    public static ArrayList<Float> safeGetArrayOfFloats(final JSONObject json, final Object key)
+    {
+        JSONArray array = safeGetJsonArray(json, key);
+        return safeGetJsonFloats(array);
     }
 
     public static ArrayList<Boolean> safeGetArrayOfBooleans(final JSONObject json, final Object key)

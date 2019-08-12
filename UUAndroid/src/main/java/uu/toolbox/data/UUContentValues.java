@@ -184,7 +184,7 @@ public final class UUContentValues
         {
             putFloat(cv, key, (Float)value);
         }
-        else if (fieldType == Double.class || fieldType == Double.class)
+        else if (fieldType == Double.class || fieldType == double.class)
         {
             putDouble(cv, key, (Double)value);
         }

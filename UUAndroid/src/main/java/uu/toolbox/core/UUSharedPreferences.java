@@ -4,12 +4,16 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 /**
  * UUSharedPreferences
  * 
  * Useful Utilities - A static wrapper around the SharedPreferences class
  *  
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public final class UUSharedPreferences 
 {
 	///////////////////////////////////////////////////////////////////////////////////////////////
@@ -24,7 +28,7 @@ public final class UUSharedPreferences
 	// Public Static Methods
 	///////////////////////////////////////////////////////////////////////////////////////////////
 
-	public static final void init(final Context context, final String prefsName)
+	public static void init(@NonNull final Context context, @NonNull final String prefsName)
 	{
 		if (theApplicationContext == null)
 		{
@@ -33,131 +37,136 @@ public final class UUSharedPreferences
 			theSharedPrefsEditor = theSharedPrefs.edit();
 		}
 	}
-	
-	public static final String stringForKey(final String key)
+
+	@Nullable
+	public static String stringForKey(@NonNull final Object key)
 	{
 		return stringForKey(key, null);
 	}
-	
-	public static final String stringForKey(final String key, final int defaultValueId)
+
+	@Nullable
+	public static String stringForKey(@NonNull final Object key, final int defaultValueId)
 	{
 		return stringForKey(key, theApplicationContext.getString(defaultValueId));
 	}
-	
-	public static final String stringForKey(final String key, final String defaultString)
+
+	@Nullable
+	public static String stringForKey(@NonNull final Object key, @Nullable final String defaultString)
 	{
 		verifyReadSingleton();
-		return theSharedPrefs.getString(key, defaultString);
+		return theSharedPrefs.getString(key.toString(), defaultString);
 	}
-	
-	public static final void setStringForKey(final String key, final String value)
+
+	@Nullable
+	public static void setStringForKey(@NonNull final Object key, @Nullable final String value)
 	{
 		verifyWriteSingleton();
-		theSharedPrefsEditor.putString(key, value);
+		theSharedPrefsEditor.putString(key.toString(), value);
 		theSharedPrefsEditor.commit();
 	}
 	
-	public static final int intForKey(final String key)
+	public static int intForKey(@NonNull final Object key)
 	{
 		return intForKey(key, -1);
 	}
 	
-	public static final int intForKey(final String key, final int defaultValue)
+	public static int intForKey(@NonNull final Object key, final int defaultValue)
 	{
 		verifyReadSingleton();
-		return theSharedPrefs.getInt(key, defaultValue);
+		return theSharedPrefs.getInt(key.toString(), defaultValue);
 	}
 	
-	public static final void setIntForKey(final String key, final int value)
+	public static void setIntForKey(@NonNull final Object key, final int value)
 	{
 		verifyWriteSingleton();
-		theSharedPrefsEditor.putInt(key, value);
+		theSharedPrefsEditor.putInt(key.toString(), value);
 		theSharedPrefsEditor.commit();
 	}
 	
-	public static final long longForKey(final String key)
+	public static long longForKey(@NonNull final Object key)
 	{
 		return longForKey(key, -1);
 	}
 	
-	public static final long longForKey(final String key, final long defaultValue)
+	public static long longForKey(@NonNull final Object key, final long defaultValue)
 	{
 		verifyReadSingleton();
-		return theSharedPrefs.getLong(key, defaultValue);
+		return theSharedPrefs.getLong(key.toString(), defaultValue);
 	}
 	
-	public static final void setLongForKey(final String key, final long value)
+	public static void setLongForKey(@NonNull final Object key, final long value)
 	{
 		verifyWriteSingleton();
-		theSharedPrefsEditor.putLong(key, value);
+		theSharedPrefsEditor.putLong(key.toString(), value);
 		theSharedPrefsEditor.commit();
 	}
 	
-	public static final float floatForKey(final String key)
+	public static float floatForKey(@NonNull final Object key)
 	{
 		return floatForKey(key, -1);
 	}
 	
-	public static final float floatForKey(final String key, final float defaultValue)
+	public static float floatForKey(@NonNull final Object key, final float defaultValue)
 	{
 		verifyReadSingleton();
-		return theSharedPrefs.getFloat(key, defaultValue);
+		return theSharedPrefs.getFloat(key.toString(), defaultValue);
 	}
 	
-	public static final void setFloatForKey(final String key, final float value)
+	public static void setFloatForKey(@NonNull final Object key, final float value)
 	{
 		verifyWriteSingleton();
-		theSharedPrefsEditor.putFloat(key, value);
+		theSharedPrefsEditor.putFloat(key.toString(), value);
 		theSharedPrefsEditor.commit();
 	}
 
-    public static final double doubleForKey(final String key)
+    public static double doubleForKey(@NonNull final Object key)
     {
         return doubleForKey(key, 0);
     }
 
-    public static final double doubleForKey(final String key, final double defaultValue)
+    public static double doubleForKey(@NonNull final Object key, final double defaultValue)
     {
         verifyReadSingleton();
-        return Double.longBitsToDouble(theSharedPrefs.getLong(key, Double.doubleToLongBits(defaultValue)));
+        return Double.longBitsToDouble(theSharedPrefs.getLong(key.toString(), Double.doubleToLongBits(defaultValue)));
     }
 
-    public static final void setDoubleForKey(final String key, final double value)
+    public static void setDoubleForKey(@NonNull final Object key, final double value)
     {
         verifyWriteSingleton();
-        theSharedPrefsEditor.putLong(key, Double.doubleToLongBits(value));
+        theSharedPrefsEditor.putLong(key.toString(), Double.doubleToLongBits(value));
         theSharedPrefsEditor.commit();
     }
 	
-	public static final boolean boolForKey(final String key)
+	public static boolean boolForKey(@NonNull final Object key)
 	{
 		return boolForKey(key, false);
 	}
 	
-	public static final boolean boolForKey(final String key, final boolean defaultValue)
+	public static boolean boolForKey(@NonNull final Object key, final boolean defaultValue)
 	{
 		verifyReadSingleton();
-		return theSharedPrefs.getBoolean(key, defaultValue);
+		return theSharedPrefs.getBoolean(key.toString(), defaultValue);
 	}
 	
-	public static final void setBoolForKey(final String key, final boolean value)
+	public static void setBoolForKey(@NonNull final Object key, final boolean value)
 	{
 		verifyWriteSingleton();
-		theSharedPrefsEditor.putBoolean(key, value);
+		theSharedPrefsEditor.putBoolean(key.toString(), value);
 		theSharedPrefsEditor.commit();
 	}
 	
-	public static final void removeValueForKey(final String key)
+	public static void removeValueForKey(@NonNull final Object key)
 	{
 		verifyWriteSingleton();
-		theSharedPrefsEditor.remove(key);
+		theSharedPrefsEditor.remove(key.toString());
 		theSharedPrefsEditor.commit();
 	}
+
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	// Private Static Methods
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	
-	private static final void verifyReadSingleton()
+	private static void verifyReadSingleton()
 	{
 		if (theSharedPrefs == null)
 		{
@@ -165,7 +174,7 @@ public final class UUSharedPreferences
 		}
 	}
 	
-	private static final void verifyWriteSingleton()
+	private static void verifyWriteSingleton()
 	{
 		if (theSharedPrefsEditor == null)
 		{

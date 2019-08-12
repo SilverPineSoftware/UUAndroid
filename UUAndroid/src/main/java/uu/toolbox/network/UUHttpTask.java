@@ -9,11 +9,11 @@ import uu.toolbox.logging.UULog;
  */
 
 @SuppressWarnings("unused")
-class UUHttpTask extends AsyncTask<UUHttpRequest, Void, UUHttpResponse>
+public class UUHttpTask extends AsyncTask<UUHttpRequest, Void, UUHttpResponse>
 {
     private UUHttpDelegate _delegate;
 
-    public UUHttpTask(final UUHttpDelegate delegate)
+    UUHttpTask(final UUHttpDelegate delegate)
     {
         _delegate = delegate;
     }
@@ -46,7 +46,7 @@ class UUHttpTask extends AsyncTask<UUHttpRequest, Void, UUHttpResponse>
         }
     }
 
-    protected boolean shouldRetry(final UUHttpResponse response)
+    private boolean shouldRetry(final UUHttpResponse response)
     {
         if (response != null)
         {
@@ -58,8 +58,7 @@ class UUHttpTask extends AsyncTask<UUHttpRequest, Void, UUHttpResponse>
                     return false;
                 }
 
-                if (ex instanceof javax.net.ssl.SSLException ||
-                        ex instanceof java.io.IOException)
+                if (ex instanceof java.io.IOException)
                 {
                     return true;
                 }
@@ -75,7 +74,7 @@ class UUHttpTask extends AsyncTask<UUHttpRequest, Void, UUHttpResponse>
         super.onPostExecute(uuHttpClientResponse);
     }
 
-    protected void invokeDelegate(UUHttpResponse uuHttpClientResponse)
+    private void invokeDelegate(UUHttpResponse uuHttpClientResponse)
     {
         try
         {
