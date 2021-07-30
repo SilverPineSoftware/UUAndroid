@@ -97,7 +97,7 @@ open class UURecyclerViewAdapter(val context: Context): RecyclerView.Adapter<Rec
                 val obj = data[i]
                 if (obj is UURemoteData.UURemoteDataReceiver)
                 {
-                    if (obj.hasRemoteData(key))
+                    if (key?.let { obj.hasRemoteData(it) } == true)
                     {
                         notifyItemChanged(i)
                     }

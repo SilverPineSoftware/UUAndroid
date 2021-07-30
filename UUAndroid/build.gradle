@@ -1,26 +1,25 @@
 buildscript {
     repositories {
-        jcenter()
     }
-    dependencies {
+    /*dependencies {
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
-    }
+    }*/
 }
 
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
+//apply plugin: 'com.github.dcendents.android-maven'
+//apply plugin: 'com.jfrog.bintray'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -52,20 +51,22 @@ configurations {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.core:core-ktx:1.6.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    javadocDeps 'androidx.appcompat:appcompat:1.0.2'
+    javadocDeps 'androidx.appcompat:appcompat:1.3.1'
 }
 
+/*
 ext {
     bintrayRepo = 'maven'
     bintrayName = 'UUAndroid'
@@ -124,7 +125,7 @@ install {
             }
         }
     }
-}
+}*/
 
 task sourcesJar(type: Jar) {
     classifier = 'sources'
@@ -175,6 +176,6 @@ try {
         }
     }
 
-} catch (all) {
+} catch (ignored) {
     project.logger.lifecycle("Failed to load bintray configs")
 }

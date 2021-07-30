@@ -178,7 +178,7 @@ class UUEditText : AppCompatEditText
         return super.onKeyPreIme(keyCode, event)
     }
 
-    override fun onCreateInputConnection(outAttrs: EditorInfo): InputConnection
+    override fun onCreateInputConnection(outAttrs: EditorInfo): InputConnection?
     {
         val conn = super.onCreateInputConnection(outAttrs)
 

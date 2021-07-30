@@ -38,7 +38,7 @@ def getVersionCode = { ->
 
 android {
     ext.bundle_id = 'uu.toolboxapp'
-    compileSdkVersion 28
+    compileSdkVersion 30
 
     signingConfigs {
         release {
@@ -49,7 +49,7 @@ android {
     defaultConfig {
         applicationId "${bundle_id}"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionName buildVersionName
         versionCode getVersionCode()
         archivesBaseName = "${bundle_id}_${versionName}"
@@ -85,12 +85,13 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation project(':UUAndroid')
 }
 
@@ -104,6 +105,6 @@ try {
     android.signingConfigs.release.keyAlias = signingProperties.getProperty('signing.alias')
     android.signingConfigs.release.keyPassword = signingProperties.getProperty('signing.alias.password')
     project.logger.lifecycle("Signing config loaded.")
-} catch (all) {
+} catch (ignored) {
     project.logger.lifecycle("Signing config file not found")
 }

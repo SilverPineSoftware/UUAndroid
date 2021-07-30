@@ -68,11 +68,13 @@ fun Activity.uuLaunchActivity(
 
 fun Activity.uuFinish(resultCode: Int? = null, resultData: Intent? = null)
 {
-    var hideAnimationId: Int?
+    var hideAnimationId: Int? = null
 
     intent.extras.let()
     {
-        hideAnimationId = it.getInt(EXTRA_EXIT_ANIMATION_ID, -1)
+        if (it != null) {
+            hideAnimationId = it.getInt(EXTRA_EXIT_ANIMATION_ID, -1)
+        }
     }
 
     if (resultCode != null && resultData != null)
