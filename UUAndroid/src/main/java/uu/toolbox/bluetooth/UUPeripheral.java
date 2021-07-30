@@ -34,8 +34,10 @@ public class UUPeripheral implements UUJsonConvertible, Parcelable
 {
     private static boolean LOGGING_ENABLED = UULog.LOGGING_ENABLED;
 
-    private static final byte DATA_TYPE_INCOMPLETE_LIST_OF_16_BIT_SERVICE_CLASS_UUIDS = 0x02;
-    private static final byte DATA_TYPE_COMPLETE_LIST_OF_128_BIT_SERVICE_CLASS_UUIDS = 0x07;
+    private static final byte DATA_TYPE_INCOMPLETE_LIST_OF_16_BIT_SERVICE_CLASS_UUIDS   = 0x02;
+    private static final byte DATA_TYPE_COMPLETE_LIST_OF_16_BIT_SERVICE_CLASS_UUIDS     = 0x03;
+    private static final byte DATA_TYPE_INCOMPLETE_LIST_OF_128_BIT_SERVICE_CLASS_UUIDS  = 0x06;
+    private static final byte DATA_TYPE_COMPLETE_LIST_OF_128_BIT_SERVICE_CLASS_UUIDS    = 0x07;
     private static final byte DATA_TYPE_COMPLETE_LOCAL_NAME = 0x09;
     private static final byte DATA_TYPE_MANUFACTURING_DATA = (byte) 0xFF;
 
