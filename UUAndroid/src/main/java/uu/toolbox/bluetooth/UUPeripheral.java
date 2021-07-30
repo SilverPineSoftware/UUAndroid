@@ -452,12 +452,14 @@ public class UUPeripheral implements UUJsonConvertible, Parcelable
                     }
 
                     case DATA_TYPE_INCOMPLETE_LIST_OF_16_BIT_SERVICE_CLASS_UUIDS:
+                    case DATA_TYPE_COMPLETE_LIST_OF_16_BIT_SERVICE_CLASS_UUIDS:
                     {
                         parseServiceUuid(data, 2);
                         break;
                     }
 
                     case DATA_TYPE_COMPLETE_LIST_OF_128_BIT_SERVICE_CLASS_UUIDS:
+                    case DATA_TYPE_INCOMPLETE_LIST_OF_128_BIT_SERVICE_CLASS_UUIDS:
                     {
                         parseServiceUuid(data, 16);
                         break;
