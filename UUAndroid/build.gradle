@@ -1,17 +1,19 @@
-buildscript {
-    repositories {
-    }
-    /*dependencies {
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
-    }*/
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+//    id 'maven-publish'
+  //  id 'signing'
 }
 
-apply plugin: 'com.android.library'
-//apply plugin: 'com.github.dcendents.android-maven'
-//apply plugin: 'com.jfrog.bintray'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+ext {
+    // Provide your own coordinates here
+    PUBLISH_GROUP_ID = 'io.spsw'
+    PUBLISH_VERSION = '0.05'
+    PUBLISH_ARTIFACT_ID = 'uuandroid'
+}
+
+apply from: "${rootProject.projectDir}/scripts/publish-module.gradle"
 
 
 android {
@@ -66,67 +68,6 @@ dependencies {
     javadocDeps 'androidx.appcompat:appcompat:1.3.1'
 }
 
-/*
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'UUAndroid'
-
-    publishedGroupId = 'uu.toolbox'
-    libraryName = 'UUAndroid'
-    artifact = 'UUAndroid'
-
-    libraryDescription = 'Useful Utilities is a collection of helper classes that extend or complement existing Android framework classes.'
-
-    siteUrl = 'https://github.com/SilverPineSoftware/UUAndroid'
-    gitUrl = 'https://github.com/SilverPineSoftware/UUAndroid.git'
-
-    libraryVersion = '0.0.4'
-
-    developerId = 'ryandevore'
-    developerName = 'Ryan DeVore'
-    developerEmail = 'ryan@silverpine.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
-}
-
-group = publishedGroupId
-version = libraryVersion
-
-install {
-    repositories.mavenInstaller {
-        pom.project {
-            packaging 'aar'
-            groupId publishedGroupId
-            artifactId artifact
-
-            name libraryName
-            description libraryDescription
-            url siteUrl
-
-            licenses {
-                license {
-                    name licenseName
-                    url licenseUrl
-                }
-            }
-            developers {
-                developer {
-                    id developerId
-                    name developerName
-                    email developerEmail
-                }
-            }
-            scm {
-                connection gitUrl
-                developerConnection gitUrl
-                url siteUrl
-            }
-        }
-    }
-}*/
-
 task sourcesJar(type: Jar) {
     classifier = 'sources'
     from android.sourceSets.main.java.srcDirs
@@ -144,38 +85,22 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
 }
 
+/*
 artifacts {
     archives javadocJar
     archives sourcesJar
 }
 
-try {
-
-    Properties properties = new Properties()
-    properties.load(new FileInputStream(file("${bintrayConfigFile}")))
-
-    bintray {
-        user = properties.getProperty("bintray.user")
-        key = properties.getProperty("bintray.apikey")
-
-        configurations = ['archives']
-        pkg {
-            repo = bintrayRepo
-            name = bintrayName
-            desc = libraryDescription
-            websiteUrl = siteUrl
-            vcsUrl = gitUrl
-            licenses = allLicenses
-            dryRun = false
-            publish = true
-            override = false
-            publicDownloadNumbers = true
-            version {
-                desc = libraryDescription
-            }
-        }
+signing {
+    def signingKey = findProperty("signingKey")
+    def signingPassword = findProperty("signingPassword")
+    useInMemoryPgpKeys(signingKey, signingPassword)
+    //sign stuffZip
+    sign publishing.publications.mavenJava
+}
+*/
+javadoc {
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
     }
-
-} catch (ignored) {
-    project.logger.lifecycle("Failed to load bintray configs")
 }
